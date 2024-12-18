@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+.env
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Project specific
+tmp/
+temp_*/
+uploads/
+*.mp4
+*.avi
+logs/
+*.log

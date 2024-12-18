@@ -1,16 +1,15 @@
+import json
 import google.generativeai as genai
 import os
-import requests
 from fastapi import HTTPException
-from ..models.schemas import VideoRequest, VideoResponse, Scoring, Metadata, Resolution
+from ..models.schemas import VideoRequest, VideoResponse, Scoring, ScoringTypedDict, Metadata, Resolution
 from ..utils.llm_helpers import upload_to_gemini, wait_for_files_active, safety_settings, gemini_generation_config
 from ..utils.helpers import download_file
 
 
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 class VideoScorer:
-    def __init__(self, video_path: str, video_request: VideoRequest):
-        self.video_path = video_path
+    def __init__(self,video_request: VideoRequest):
         self.video_request = video_request
         generation_config = {
                 "temperature": 1,
@@ -31,11 +30,59 @@ f"""You will be given the following information by the user:
 - a video creative of the product
 - scoring_criteria: The criteria for scoring the video
 
-Now based on the criteria, and the information provided, you need to score the video on the given scale.
+Now based on the criteria, and the information provided, you need to:
+- Firstly build an even more detailed rubric for awarding points. 
+- After creating the rubric, now step by step score the video with your justifications. 
 """
                     )
+        self.llm_json_writer = genai.GenerativeModel(
+            model_name= "gemini-1.5-flash-002",
+            generation_config={
+                "temperature": 1,
+                "top_p": 0.95,
+                "top_k": 40,
+                "response_mime_type": "application/json", 
+                "response_schema": ScoringTypedDict
+            },
+            safety_settings=safety_settings,
+            system_instruction="From the given text, extract the required data for the given JSON schema and provide the JSON response."
+        )
     def score_video(self) -> VideoResponse:
-        ...
+        generated_video_path = os.path.abspath("../../data/generated.mp4")
+        logo_url = self.video_request.video_details.logo_url
+        logo_path = download_file(logo_url, "logo.png")
+        video_request_dict = self.video_request.model_dump()
+        input_text = f"""
+product_name: {video_request_dict['video_details']['product_name']}
+tagline: {video_request_dict['video_details']['tagline']}
+brand_palette: {video_request_dict['video_details']['brand_palette']}
+cta_text: {video_request_dict['video_details']['cta_text']}
+scoring_criteria: {video_request_dict['scoring_criteria']}
+"""
+        files = [
+            upload_to_gemini(generated_video_path),
+            upload_to_gemini(logo_path)
+        ]
+        wait_for_files_active(files)
 
-
-        
+        chat_sess = self.llm.start_chat(
+            history=[
+                {
+                    "role": "user",
+                    "parts": [
+                        files[0],
+                    ],
+                },
+                {
+                    "role": "user",
+                    "parts": [
+                        files[1],
+                    ],
+                },
+            ]
+        )
+        response = chat_sess.send_message(input_text).text
+        scoring = json.loads(self.llm_json_writer.generate_content(response).text)
+        scoring = Scoring(**scoring)
+        print(scoring.model_dump())
+        return scoring

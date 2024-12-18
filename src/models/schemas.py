@@ -1,5 +1,6 @@
 from pydantic import BaseModel, HttpUrl
 from typing import List
+import typing_extensions as typing
 
 class Dimensions(BaseModel):
     width: int
@@ -37,6 +38,15 @@ class Metadata(BaseModel):
     resolution: Resolution
 
 class Scoring(BaseModel):
+    background_foreground_separation: float
+    brand_guideline_adherence: float
+    creativity_visual_appeal: float
+    product_focus: float
+    call_to_action: float
+    audience_relevance: float
+    total_score: float
+
+class ScoringTypedDict(typing.TypedDict):
     background_foreground_separation: float
     brand_guideline_adherence: float
     creativity_visual_appeal: float

@@ -1,1 +1,6 @@
 pydantic
+google-generativeai
+grpcio==1.67.1
+requests
+typing_extensions
+fastapi

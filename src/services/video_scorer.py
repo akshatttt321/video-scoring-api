@@ -29,14 +29,14 @@ f"""You will be given the following information by the user:
 - brand_logo : The brand logo
 - a video creative of the product
 - scoring_criteria: The criteria for scoring the video
-
+- These videos are targeted at an age group of millennials, aged 25-35. 
 Now based on the criteria, and the information provided, you need to:
 - Firstly build an even more detailed rubric for awarding points. 
 - After creating the rubric, now step by step score the video with your justifications. 
 """
                     )
         self.llm_json_writer = genai.GenerativeModel(
-            model_name= "gemini-1.5-flash-002",
+            model_name= "gemini-1.5-flash",
             generation_config={
                 "temperature": 1,
                 "top_p": 0.95,
@@ -47,8 +47,8 @@ Now based on the criteria, and the information provided, you need to:
             safety_settings=safety_settings,
             system_instruction="From the given text, extract the required data for the given JSON schema and provide the JSON response."
         )
-    def score_video(self) -> VideoResponse:
-        generated_video_path = os.path.abspath("../../data/generated.mp4")
+    def score_video(self,generated_path:str = "data/generated.mp4") -> VideoResponse:
+        generated_video_path = os.path.abspath(generated_path)
         logo_url = self.video_request.video_details.logo_url
         logo_path = download_file(logo_url, "logo.png")
         video_request_dict = self.video_request.model_dump()
@@ -58,6 +58,19 @@ tagline: {video_request_dict['video_details']['tagline']}
 brand_palette: {video_request_dict['video_details']['brand_palette']}
 cta_text: {video_request_dict['video_details']['cta_text']}
 scoring_criteria: {video_request_dict['scoring_criteria']}
+More info on Scording Criteria:
+○ Background and Foreground Separation:
+	■ Clear and visually distinct separation.
+○ Adherence to Brand Guidelines:
+	■ Consistency in using brand colors, fonts, and logo.
+○ Creativity and Visual Appeal:
+	■ Engaging storytelling, transitions, and animations.
+○ Product Focus:
+	■ Prominence of the product throughout the video.
+○ Call-to-Action:
+	■ Visibility and placement of the CTA.
+○ Audience Relevance:
+	■ Appeal to the target audience's values and preferences.
 """
         files = [
             upload_to_gemini(generated_video_path),
@@ -82,7 +95,8 @@ scoring_criteria: {video_request_dict['scoring_criteria']}
             ]
         )
         response = chat_sess.send_message(input_text).text
+        print(response)
         scoring = json.loads(self.llm_json_writer.generate_content(response).text)
         scoring = Scoring(**scoring)
-        print(scoring.model_dump())
+        print(scoring.model_dump_json())
         return scoring

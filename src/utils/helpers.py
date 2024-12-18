@@ -7,7 +7,7 @@ def download_file(url:str, filename:str) -> str:
     the given filename in the tmp folder in the project 
     root directory.
     """
-    tmp_dir = os.path.abspath("../../tmp")
+    tmp_dir = os.path.abspath("tmp")
     if not os.path.exists(tmp_dir):
         os.makedirs(tmp_dir)
     

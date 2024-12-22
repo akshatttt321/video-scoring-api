@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom right,
+  #0F2027,#203A43,#2C5364);
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.Scroll{
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}

@@ -100,7 +100,7 @@ const HomePage = () => {
   return (
     <div className={`${showForm? 'h-screen overflow-hidden': 'h-full'} overflow-x-hidden`}>
     <div className={`${showForm? ' overflow-hidden':''} h-full  flex flex-col w-full justify-between items-start bg-gray-100 text-gray-200`}
-    style={{backgroundImage:"url('public/pexels-goldcircuits-2425232.jpg')", backgroundSize:"cover", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}
+    style={{backgroundImage:"url('pexels-goldcircuits-2425232.jpg')", backgroundSize:"cover", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}
     >
         <div className="flex  ml-16 gap-28 justify-between w-1/3 h-screen">
         <div className="flex flex-col items-center gap-4">
@@ -109,7 +109,9 @@ const HomePage = () => {
         </div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-gray-800 rounded-full"></div>
       </div>
-      <div className="flex bg-[url('pexels-fwstudio-33348-129733.jpg')] items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
+      <div 
+      style={{backgroundImage:"url('pexels-fwstudio-33348-172276.jpg')"}}
+      className="flex items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold uppercase">Generate</h1>
     </div>
       </div>
@@ -119,7 +121,9 @@ const HomePage = () => {
         </div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-gray-800 rounded-full"></div>
       </div>
-      <div className="flex bg-[url('pexels-fwstudio-33348-172276.jpg')] transform -rotate-12 items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
+      <div 
+      style={{backgroundImage:"url('pexels-fwstudio-33348-163999.jpg')"}}
+      className="flex transform -rotate-12 items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold uppercase">Your</h1>
     </div>
       </div>
@@ -129,7 +133,9 @@ const HomePage = () => {
         </div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-gray-800 rounded-full"></div>
       </div>
-      <div className="flex bg-[url('pexels-fwstudio-33348-163999.jpg')] items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
+      <div 
+      style={{backgroundImage:"url('pexels-fwstudio-33348-132193.jpg')"}}
+      className="flex  items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold uppercase">Own</h1>
     </div>
       </div>
@@ -139,7 +145,9 @@ const HomePage = () => {
         </div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-gray-800 rounded-full"></div>
       </div>
-      <div className="flex bg-[url('pexels-fwstudio-33348-129723.jpg')] transform rotate-12 items-center justify-center h-40 w-48 text-black rounded-lg shadow-lg">
+      <div 
+      style={{backgroundImage:"url('pexels-fwstudio-33348-129723.jpg')"}}
+      className="flex  transform rotate-12 items-center justify-center h-40 w-48 text-black rounded-lg shadow-lg">
       <h1 className="text-2xl mix-blend-multiply font-semibold uppercase">Product</h1>
     </div>
       </div>
@@ -149,7 +157,9 @@ const HomePage = () => {
         </div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-gray-800 rounded-full"></div>
       </div>
-      <div className="flex bg-[url('pexels-fwstudio-33348-132193.jpg')] items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
+      <div 
+      style={{backgroundImage:"url('pexels-fwstudio-33348-129733.jpg')"}}
+      className="flex items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold uppercase">Ad</h1>
     </div>
       </div>

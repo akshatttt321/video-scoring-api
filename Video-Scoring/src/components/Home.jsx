@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 
 const videos = [
   "Final_vedio0001-0579.mp4",
-  "Final_vedio0001-0579.mp4",
-  "Final_vedio0001-0579.mp4",
-  "Final_vedio0001-0579.mp4",
-  "Final_vedio0001-0579.mp4"
+  "WhatsApp Video 2024-12-23 at 05.14.05.mp4",
+  "WhatsApp Video 2024-12-22 at 21.55.20.mp4",
+  "WhatsApp Video 2024-12-22 at 21.38.54.mp4",
+  "WhatsApp Video 2024-12-23 at 21.27.44.mp4",
+  "WhatsApp Video 2024-12-23 at 21.27.45.mp4"
 ];
 
 const HomePage = () => {
@@ -99,7 +100,7 @@ const HomePage = () => {
   return (
     <div className={`${showForm? 'h-screen overflow-hidden': 'h-full'} overflow-x-hidden`}>
     <div className={`${showForm? ' overflow-hidden':''} h-full  flex flex-col w-full justify-between items-start bg-gray-100 text-gray-200`}
-    style={{backgroundImage:"url('pexels-goldcircuits-2425232.jpg')", backgroundSize:"cover", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}
+    style={{backgroundImage:"url('public/pexels-goldcircuits-2425232.jpg')", backgroundSize:"cover", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}
     >
         <div className="flex  ml-16 gap-28 justify-between w-1/3 h-screen">
         <div className="flex flex-col items-center gap-4">
@@ -118,7 +119,7 @@ const HomePage = () => {
         </div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-gray-800 rounded-full"></div>
       </div>
-      <div className="flex bg-[url('pexels-fwstudio-33348-172276.jpg')] items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
+      <div className="flex bg-[url('pexels-fwstudio-33348-172276.jpg')] transform -rotate-12 items-center justify-center h-40 w-48 text-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold uppercase">Your</h1>
     </div>
       </div>
@@ -153,11 +154,11 @@ const HomePage = () => {
     </div>
       </div>
     </div>
-    <div className="flex mb-8 w-screen h-screen gap-28 flex-col">
+    <div className="flex mt-20 m-8 w-screen h-screen gap-28 flex-col">
     <div className="overflow-hidden relative w-full  h-full bg-transparent">
       <div className="flex w-[calc(300px*3)] gap-16 animate-scroll">
         {videos.concat(videos).map((video, index) => (
-          <div key={index} className="w-[400px] flex-shrink-0 ">
+          <div key={index} className="w-[400px] h-[200px] flex-shrink-0 ">
             <video
               src={video}
               className="w-full rounded-xl h-full object-cover"
@@ -172,7 +173,7 @@ const HomePage = () => {
     <div className="overflow-hidden relative w-full h-full bg-transparent">
       <div className="flex justify-center w-[calc(300px*3)] gap-16 animate-reverse">
         {videos.concat(videos).map((video, index) => (
-          <div key={index} className="w-[400px] flex-shrink-0 ">
+          <div key={index} className="w-[400px] h-[200px] flex-shrink-0 ">
             <video
               src={video}
               className="w-full rounded-xl h-full object-cover"

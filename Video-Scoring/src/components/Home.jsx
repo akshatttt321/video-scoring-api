@@ -11,6 +11,13 @@ const videos = [
   "WhatsApp Video 2024-12-23 at 21.27.45.mp4"
 ];
 
+const videos2 =[
+  "https://res.cloudinary.com/dzz1r3hcf/video/upload/v1734982012/xqiavzhjbiuthhts5pvq.mp4",
+  "https://res.cloudinary.com/dzz1r3hcf/video/upload/v1734983257/nn2mzuseujljoke5vmgn.mp4",
+  "https://res.cloudinary.com/dzz1r3hcf/video/upload/v1734977696/ih9toaqwvj8im6rh6mp4.mp4"
+
+]
+
 const HomePage = () => {
   const { inputData,outputData,updateInputData,updateOutputData } = useSharedContext();
   const [showOverlay, setShowOverlay] = useState(false)
@@ -54,6 +61,7 @@ const HomePage = () => {
     });
 
     if (!response.ok) {
+      alert("request failed, Please Try Again!")
       throw new Error(`Error: ${response.statusText}`);
     }
 
@@ -62,6 +70,7 @@ const HomePage = () => {
     updateOutputData(data)
     console.log('Output Data:', outputData);
   } catch (error) {
+    alert("request failed, Please Try Again!")
     console.error('Request failed:', error);
   }
 }
@@ -182,7 +191,7 @@ const HomePage = () => {
     </div>
     <div className="overflow-hidden relative w-full h-full bg-transparent">
       <div className="flex justify-center w-[calc(300px*3)] gap-16 animate-reverse">
-        {videos.concat(videos).map((video, index) => (
+        {videos2.concat(videos2).map((video, index) => (
           <div key={index} className="w-[400px] h-[200px] flex-shrink-0 ">
             <video
               src={video}

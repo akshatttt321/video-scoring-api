@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { use } from 'react';
 
 const Dashboard = () => {
-  const [timeTaken,setTimetaken] = useState(0);
   const [count,setCount] = useState(0)
   const [minutes, setMinutes] = useState(15);
   const [seconds, setSeconds] = useState(0);
@@ -35,9 +34,6 @@ const Dashboard = () => {
     if(seconds < 0){
       setSeconds(59);
       setMinutes((prevTime) => prevTime - 1);
-    }
-    if(!isRunning){
-      setTimetaken((15*60 - count)/60);
     }
     return () => clearInterval(timerInterval);
   }, [isRunning,seconds]); 
@@ -202,7 +198,7 @@ src="https://media.tenor.com/2fE4s1GXDNEAAAAj/loading.gif"></img>)}
               <span className="text-sm text-white mt-2">Total Score</span>
             </div>
           </div>
-          {outputData.video_url && (<p className='text-xl absolute bottom-10 right-5  text-white'>Total Time Taken : {timeTaken} mintues </p>)}
+          {outputData.video_url && (<p className='text-xl absolute bottom-10 right-5  text-white'>Total Time Taken : {(count/60).toFixed(2)} mintues </p>)}
         </div>
       </div>
       {visible && (

@@ -17,12 +17,13 @@ const Dashboard = () => {
 
   const { inputData, outputData,updateInputData,updateOutputData } = useSharedContext();
 
+  useEffect(() => {
   if(inputData.scoring_criteria){
   setInputScoringCriteria(Object.entries(inputData.scoring_criteria).map(([key, value]) => ({
     name: key,
     value: value
   })))
-}
+}},[inputData])
 
   useEffect(()=>{
   if(outputData.video_url){

@@ -21,6 +21,8 @@ const InputForm = ({showForm, setShowForm}) => {
         {id:4, selected:false},
         {id:5, selected:false}
       ])
+      const [email,setEmail] = useState('')
+      const [notification,setNotification] = useState(true)
       const [video_styles,setVideoStyles]= useState('')
       const {outputData,updateInputData,updateOutputData } = useSharedContext();
       const [product, setProduct] = useState('')
@@ -85,9 +87,15 @@ const InputForm = ({showForm, setShowForm}) => {
          "video_style":video_styles
       };
     
+      if(!requestBody){
+        alert("request failed, Please Try Again!")
+        updateOutputData({isSucessful: false});
+      }
+      
+      updateOutputData({isSucessful: true});
       updateInputData(requestBody)  
-    
       console.log('Request Body:', requestBody);
+      console.log(outputData)
     
       try {
         const response = await fetch(url, {
@@ -99,6 +107,7 @@ const InputForm = ({showForm, setShowForm}) => {
         });
     
         if (!response.ok) {
+          updateOutputData({isSucessful: false});
           alert("request failed, Please Try Again!")
           throw new Error(`Error: ${response.statusText}`);
         }
@@ -108,6 +117,7 @@ const InputForm = ({showForm, setShowForm}) => {
         updateOutputData(data)
         console.log('Output Data:', outputData);
       } catch (error) {
+        updateOutputData({isSucessful: false});
         alert("request failed, Please Try Again!")
         console.error('Request failed:', error);
       }
@@ -137,11 +147,7 @@ const InputForm = ({showForm, setShowForm}) => {
             acc[key] = item.score;
             return acc;
           }, {});
-          console.log("After transformation:", scoringCriteriaObject);
-          
-          
-          console.log(valuesArray)
-          console.log(scoringCriteriaObject)
+
           scoreVideo(videoDetails, scoringCriteriaObject)
         
       }
@@ -272,6 +278,9 @@ const InputForm = ({showForm, setShowForm}) => {
           }
         ];
 
+        const handleEmail = (value)=>{
+          notification? setEmail(value):setEmail('')
+        }
 
   return (
     <>
@@ -282,7 +291,7 @@ const InputForm = ({showForm, setShowForm}) => {
       <Link to="/dashboard">
       <button
       onClick={()=>Submit()} 
-          className="px-6 py-3 bg-gradient-to-r mr-28 to-[#6f36ac] from-[#7263b0] text-gray-200 font-bold rounded-lg shadow-lg hover:shadow-purple-500/65 transition"
+          className="px-5 py-2 border border-gray-400 mt-6 bg-gradient-to-r mr-28 to-[#6f36ac] from-[#7263b0] text-gray-200 font-bold rounded-lg shadow-lg hover:shadow-purple-500/65 transition"
         >
 
           Generate
@@ -425,7 +434,10 @@ const InputForm = ({showForm, setShowForm}) => {
           </div>
           <div className='flex gap-9 justify-evenly w-[100%] pb-4 items-center'>
             <div className={`flex flex-col w-[95%] gap-4 p-4 rounded-xl border-2 border-gray-500 justify-center items-baseline`}>
-            <h1 className='text-white text-xl'>Art Styles (Optional)</h1>
+            <div className='flex justify-center gap-2 items-center'>
+            <h1 className='text-white text-xl'>Art Styles</h1>
+            <p  className='text-gray-500 mt-1 text-sm'>(Optional)</p>
+            </div>
             <div className="flex flex-wrap gap-[17.2px] bg-transparent px-2 text-center">
       {artStyles.map((style, index) => (
         <button
@@ -445,7 +457,10 @@ const InputForm = ({showForm, setShowForm}) => {
         </button>
       ))}
     </div>
-            <h1 className='text-white text-xl'>Additional Guidelines (Optional)</h1>
+            <div className='flex justify-center gap-2 items-center'>
+            <h1 className='text-white text-xl'>Additional Guidelines</h1>
+            <p  className='text-gray-500 mt-1 text-sm'>(Optional)</p>
+            </div>
             <textarea
             onChange = {(e)=>{setAdditional(e.target.value)}}
             placeholder='How do you want your video to look like?' 
@@ -456,7 +471,7 @@ const InputForm = ({showForm, setShowForm}) => {
           </div>
            </div>
         </div>
-        <div className='h-full flex -ml-10  justify-center mr-10'>  
+        <div className='h-full flex flex-col gap-5 -ml-10  justify-center mr-10'>  
         <div className='flex flex-col gap-[24px] p-4 rounded-xl border-2 border-gray-500 justify-start items-baseline'>
           <div className='flex justify-between w-full'>
             <h1 className='text-xl text-center mt-1 text-white'>Scoring Criteria</h1>
@@ -489,6 +504,34 @@ const InputForm = ({showForm, setShowForm}) => {
             }}  
             onChange={(e) => handleScoreChange(index,e.target.value)} />
             </div>))}
+            </div>
+            <div className='flex flex-col gap-[24px] p-4 rounded-xl border-2 border-gray-500 justify-start items-baseline'>
+            <h1 className='text-xl text-center text-white'>Account Details</h1>
+            <div className='flex w-full flex-col gap-2 text-start'>
+          <label className='text-white placeholder:italic'>Email Adress</label>
+            <input type='text' 
+            placeholder='Enter your email address'
+            className= 'inputbox'
+            style={{width:'100%'}}
+            onChange={(e) => handleEmail(e.target.value)} />
+            </div>
+            <div className="flex w-full justify-between items-center">
+              <h1 className='text-white text-start text-md'>Do you want notification<br></br> upon video completion??</h1>
+      <div className='flex gap-3'>
+      <button
+        onClick={()=>setNotification(true)}
+        className={`bg-green-500 text-white px-4 py-1 ${notification? 'border-2 border-white':''} rounded-lg hover:bg-green-600 transition duration-300`}
+      >
+        Yes
+      </button>
+      <button
+        onClick={()=>setNotification(false)}
+        className={`bg-red-500 text-white px-4 py-1 ${!notification? 'border-2 border-white':''} rounded-lg hover:bg-red-600 transition duration-300`}
+      >
+        No
+      </button>
+      </div>
+    </div>
             </div>
             </div> 
         </div>           

@@ -9,6 +9,7 @@ const Dashboard = () => {
   const [minutes, setMinutes] = useState(15);
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false); 
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [key,setKey] = useState('');
   const [visible, setVisible] = useState(false);
@@ -18,7 +19,11 @@ const Dashboard = () => {
   if(outputData.video_url){
     setIsRunning(false);
   }
-  else{
+  else if(!outputData.isSucessful){
+    setIsSuccess(false)
+    setIsRunning(false);
+  }
+  else {
     setIsRunning(true)
   }
 },[outputData])
@@ -62,7 +67,7 @@ const Dashboard = () => {
         <div className="bg-gray-800 p-4 rounded-md shadow-md col-span-2">
           <div className="w-full relative aspect-video bg-gray-900 rounded-md flex items-center justify-center">
             <span className="text-gray-500">
-            {outputData.video_url? (<video className=''
+            {!isRunning? isSuccess? (<video className=''
             loop
             controls
             autoPlay
@@ -70,14 +75,16 @@ const Dashboard = () => {
             src={outputData.video_url}
             ></video>):(<img 
             className='w-64 h-64'
-            src='https://media.tenor.com/Y7bSnLM1Cw8AAAAj/bar-penguin.gif'></img>)
-            }
+            src='https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzBjcXpncTJjMmkwOHJrYjNqNjAxeHZobWNiNWIwZXFzOXBod2FpNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8L0Pky6C83SzkzU55a/giphy.webp'></img>)
+            :(<img 
+              className='w-64 h-64'
+              src='https://media.tenor.com/Y7bSnLM1Cw8AAAAj/bar-penguin.gif'></img>)}
             </span>
             {outputData.video_url? '':<p className='absolute right-5  bottom-5 text-white'>Time Left ≈ {minutes} m : {seconds} s</p>}
           </div>
           <div className="mt-4 flex items-center justify-between">
             <h2 className="text-lg font-bold text-white">Video Generation</h2>
-            <span className={`px-3 py-1 ${isRunning?'bg-yellow-500':'bg-green-500'} text-white rounded-full`}>{isRunning? 'Generating':'Success'}</span>
+            <span className={`px-3 py-1 ${isRunning?'bg-yellow-500':isSuccess?'bg-green-500':'bg-red-500'} text-white rounded-full`}>{isRunning? 'Generating':isSuccess?'Success':'Failed'}</span>
           </div>
         </div>
 

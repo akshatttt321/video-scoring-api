@@ -47,7 +47,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="p-6 overflow-hidden relative bg-gray-900 min-h-screen">
+    <div className="p-6 overflow-hidden relative bg-dark-gradient min-h-screen">
       <div className="flex justify-between items-center bg-gray-800 p-4 rounded-md shadow-md">
         <div className="flex space-x-4">
           <button className="px-4 py-2 bg-green-500 text-white rounded-md">Video</button>
@@ -77,7 +77,7 @@ const Dashboard = () => {
           </div>
           <div className="mt-4 flex items-center justify-between">
             <h2 className="text-lg font-bold text-white">Video Generation</h2>
-            <span className="px-3 py-1 bg-green-500 text-white rounded-full">Success</span>
+            <span className={`px-3 py-1 ${isRunning?'bg-yellow-500':'bg-green-500'} text-white rounded-full`}>{isRunning? 'Generating':'Success'}</span>
           </div>
         </div>
 

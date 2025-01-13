@@ -5,10 +5,14 @@ export default {
   theme: {
     extend: {
 
+      backgroundImage: {
+        'dark-gradient': 'linear-gradient(135deg, #000000, #111111, #222222, #333333, #444444, #555555)',
+      },
+
       clipPath: {
         'ellipse': 'ellipse(90px 30px at 100px 50px)'
 
-      },
+      },  
 
       boxShadow: {
         glow: '0 0 1px 0px #ff9a00, 0 0 20px 0px #ff6a00, 0 0 30px 0px #ff4500',

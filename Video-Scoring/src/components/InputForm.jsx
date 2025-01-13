@@ -13,10 +13,16 @@ const InputForm = ({showForm, setShowForm}) => {
         showForm: PropTypes.bool.isRequired,
         setShowForm: PropTypes.func.isRequired,
       };
-      
       const [additional_guidelines,setAdditional]= useState('none')
+      const [selected,setSelected] = useState([{id:0, selected:false},
+        {id:1, selected:false},
+        {id:2, selected:false},
+        {id:3, selected:false},
+        {id:4, selected:false},
+        {id:5, selected:false}
+      ])
       const [video_styles,setVideoStyles]= useState('')
-      const {inputData,outputData,updateInputData,updateOutputData } = useSharedContext();
+      const {outputData,updateInputData,updateOutputData } = useSharedContext();
       const [product, setProduct] = useState('')
       const [tagline,setTagline] = useState('')
       const [brandPallete,setBrandPallete] = useState([{id:1,value:'#000000',colorName:'Black'}])
@@ -25,7 +31,7 @@ const InputForm = ({showForm, setShowForm}) => {
       const [CTA,setCTA] = useState('')
       const [Logo, setLogo] = useState('')
       const [Video, setVideo] = useState('')
-      const [Duration, setDuration] = useState(0)
+      const [Duration, setDuration] = useState(5)
       const [showNav, setShowNav] = useState(true);
       const [scoringCriteria, setScoringCriteria] = useState([{
         id:0, criteria:'Background Foreground Separation', score:20,
@@ -40,6 +46,7 @@ const InputForm = ({showForm, setShowForm}) => {
       const CLOUDINARY_URL_IMAGE = "https://api.cloudinary.com/v1_1/dzz1r3hcf/image/upload"
       const CLOUDINARY_URL_VIDEO = "https://api.cloudinary.com/v1_1/dzz1r3hcf/video/upload"
       const CLOUDINARY_UPLOAD_PRESET = "Logos_Videos"
+
       
       addEventListener("scroll", () => {
         if (window.scrollY < lastScrollY) {
@@ -148,7 +155,7 @@ const InputForm = ({showForm, setShowForm}) => {
 
       const handleScoreChange = (id, value) => {
         setScoringCriteria(
-          scoringCriteria.map((field) => (field.id === id ? { ...field, score: parseInt(value) } : field))
+          scoringCriteria.map((field) => (field.id === id && parseInt(value) ? { ...field, score: parseInt(value) }: field))
         );
         console.log(scoringCriteria)
       }
@@ -417,17 +424,22 @@ const InputForm = ({showForm, setShowForm}) => {
             </div>
           </div>
           <div className='flex gap-9 justify-evenly w-[100%] pb-4 items-center'>
-            <div className='flex flex-col w-[95%] gap-4 p-4 rounded-xl border-2 border-gray-500 justify-center items-baseline'>
+            <div className={`flex flex-col w-[95%] gap-4 p-4 rounded-xl border-2 border-gray-500 justify-center items-baseline`}>
             <h1 className='text-white text-xl'>Art Styles (Optional)</h1>
             <div className="flex flex-wrap gap-[17.2px] bg-transparent px-2 text-center">
       {artStyles.map((style, index) => (
         <button
-        onClick={()=>{setVideoStyles(style.text)}}
+        onClick={()=>{setVideoStyles(style.text)
+          setSelected(
+          selected.map((field)=>(field.id===index?{...field,selected:true}:{...field,selected:false}
+          ))
+          )
+        }}
           style={{backgroundImage:`url(${style.background})`,
           backgroundPosition:'center'
         }}
           key={index}
-          className={`text-white w-[32%] border-2 border-gray-500 hover:bg-gray-700 py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105`}
+          className={`text-white w-[32%] border-2 ${selected[index].selected?'border-pink-300':'border-gray-400'} hover:bg-gray-700 py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105`}
         >
           <p className='text-white'>{style.text}</p>
         </button>

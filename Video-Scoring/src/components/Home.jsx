@@ -50,7 +50,10 @@ addEventListener("scroll", () => {
   return (
     <div className={`${showForm? 'h-screen overflow-hidden': 'h-full'} Main Scroll w-screen relative bg-no-repeat bg-contain bg-black`}>
       <Navbar showNav={showNav} setShowNav={setShowNav} />
-      <div className=" flex flex-col bg-[url(bg.svg)] bg-center bg-no-repeat gap-4 justify-center items-center min-h-screen h-full w-full">
+      <div 
+      style={{backgroundImage:'url(bg.svg)'
+      }}
+      className="flex flex-col bg-center bg-no-repeat gap-4 justify-center items-center min-h-screen h-full w-full">
       <div className="gradient text-transparent text-5xl font-bold">
   Discover the Future
 </div>

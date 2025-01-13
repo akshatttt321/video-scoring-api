@@ -84,7 +84,8 @@ const InputForm = ({showForm, setShowForm}) => {
         video_details: videoDetails,
         scoring_criteria: scoringCriteria,
         "additional_guidelines": additional_guidelines,
-         "video_style":video_styles
+         "video_style":video_styles,
+         "email": email
       };
     
       if(!requestBody){
@@ -279,7 +280,12 @@ const InputForm = ({showForm, setShowForm}) => {
         ];
 
         const handleEmail = (value)=>{
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if(emailRegex.test(value))
           notification? setEmail(value):setEmail('')
+          else
+          setEmail('')
+        console.log(email)
         }
 
   return (
@@ -508,10 +514,10 @@ const InputForm = ({showForm, setShowForm}) => {
             <div className='flex flex-col gap-[24px] p-4 rounded-xl border-2 border-gray-500 justify-start items-baseline'>
             <h1 className='text-xl text-center text-white'>Account Details</h1>
             <div className='flex w-full flex-col gap-2 text-start'>
-          <label className='text-white placeholder:italic'>Email Adress</label>
-            <input type='text' 
+          <label className='text-white '>Email Adress</label>
+            <input type='email' 
             placeholder='Enter your email address'
-            className= 'inputbox'
+            className= 'inputbox placeholder:italic'
             style={{width:'100%'}}
             onChange={(e) => handleEmail(e.target.value)} />
             </div>

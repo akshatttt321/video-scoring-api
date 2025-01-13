@@ -6,11 +6,16 @@ import App from './App.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import HomePage from './components/Home.jsx';
 import { SharedProvider } from './sharedContext.jsx';
+import InputForm from './components/InputForm.jsx';
 
 const router = createBrowserRouter([
   {
     path: "",
     element: <HomePage />
+  },
+  {
+    path:"/input-form",
+    element:<InputForm />
   },
   {
     path: "/dashboard",

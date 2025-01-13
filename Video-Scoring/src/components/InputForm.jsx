@@ -7,7 +7,8 @@ import Navbar from './Navbar';
 import { FaUpload } from "react-icons/fa"; 
 import axios from 'axios';
 
-const InputForm = ({showForm, setShowForm}) => {
+
+const InputForm = () => {
 
     InputForm.propTypes = {
         showForm: PropTypes.bool.isRequired,
@@ -294,7 +295,7 @@ const InputForm = ({showForm, setShowForm}) => {
     <div className='bg-black bg-cover text-center pt-20 w-full h-full '>
       <div className=' flex justify-between items-center'>
       <h1 className='text-3xl my-5 mt-10 ml-24 text-white'>Fill In Your Video Details</h1>
-      <Link to="/dashboard">
+      <Link to={`/dashboard/`}>
       <button
       onClick={()=>Submit()} 
           className="px-5 py-2 border border-gray-400 mt-6 bg-gradient-to-r mr-28 to-[#6f36ac] from-[#7263b0] text-gray-200 font-bold rounded-lg shadow-lg hover:shadow-purple-500/65 transition"

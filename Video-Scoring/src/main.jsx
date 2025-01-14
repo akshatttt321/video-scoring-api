@@ -8,8 +8,11 @@ import HomePage from './components/Home.jsx';
 import { SharedProvider } from './sharedContext.jsx';
 import InputForm from './components/InputForm.jsx';
 import { useSharedContext } from './sharedContext.jsx';
+import { useParams } from 'react-router-dom';
 
-const router = createBrowserRouter([
+
+const router = createBrowserRouter(
+  [
   {
     path: "",
     element: <HomePage />
@@ -17,10 +20,6 @@ const router = createBrowserRouter([
   {
     path:"/input-form",
     element:<InputForm />
-  },
-  {
-  path: `/dashboard`,
-  element:<Dashboard/>
   },
   {
     path: `/dashboard/:id`,

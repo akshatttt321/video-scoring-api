@@ -13,17 +13,16 @@ const Dashboard = () => {
   const [isRunning, setIsRunning] = useState(false); 
   const [isSuccess, setIsSuccess] = useState(false);
   const [scoringCriteria, setScoringCriteria] = useState([]);
-  const [InputscoringCriteria, setInputScoringCriteria] = useState([]);
-
   const { inputData, outputData,updateInputData,updateOutputData } = useSharedContext();
 
   useEffect(() => {
   if(inputData.scoring_criteria){
-  setInputScoringCriteria(Object.entries(inputData.scoring_criteria).map(([key, value]) => ({
+  setScoringCriteria(Object.entries(inputData.scoring_criteria).map(([key, value]) => ({
     name: key,
     value: value
   })))
-}},[inputData])
+  console.log(scoringCriteria)
+}},[])
 
   useEffect(()=>{
   if(outputData.video_url){
@@ -140,13 +139,15 @@ if(outputData.scoring){
            "bg-green-100"
         } w-12 h-12 rounded-full flex items-center justify-center`}
       >
-        {outputData.video_url ? (
+        {outputData.video_url || inputData ? (
           <span
             className={`${
              "text-green-600"
             }`}
           >
-           {criteria.score}
+           {criteria.score?criteria.score:(<img className='w-6 h-6'
+           src='https://media.tenor.com/szH2qsISnzMAAAAj/emoji-thinking.gif'
+           ></img>)}
           </span>
         ) : (
           <img

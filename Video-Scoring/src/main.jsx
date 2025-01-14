@@ -9,6 +9,7 @@ import { SharedProvider } from './sharedContext.jsx';
 import InputForm from './components/InputForm.jsx';
 import { useSharedContext } from './sharedContext.jsx';
 import { useParams } from 'react-router-dom';
+import Catalogue from './components/Catalogue.jsx';
 
 
 const router = createBrowserRouter(
@@ -24,6 +25,10 @@ const router = createBrowserRouter(
   {
     path: `/dashboard/:id`,
     element: <Dashboard />
+  },
+  {
+    path: `/catalogue`,
+    element: <Catalogue />
   }
 ]);
 

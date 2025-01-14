@@ -24,9 +24,11 @@ export default function Navbar( {showNav, setShowNav} ) {
           <a href="#services" className="text-white hover:text-gray-200">
             Remove Background
           </a>
+          <Link to={"/catalogue"}>
           <a href="#contact" className="text-white hover:text-gray-200">
             Catalogue
           </a>
+          </Link>
         </div>
         <div
           className="md:hidden text-white cursor-pointer"

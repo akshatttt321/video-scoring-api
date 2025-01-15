@@ -14,6 +14,8 @@ const Dashboard = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [scoringCriteria, setScoringCriteria] = useState([]);
   const { inputData, outputData,updateInputData,updateOutputData } = useSharedContext();
+  const [getJustifictaions,setGetJustifications] = useState(false)
+
 
   useEffect(() => {
   if(inputData.scoring_criteria){
@@ -58,9 +60,7 @@ const Dashboard = () => {
   const fetchData = async()=>{
 
    if(id===' ') return 
-  const response = await fetch(`https://kanishak-video-scoring-api.hf.space/score-video/${id}`,{method:'GET',
-    mode:'no-cors'
-  })
+  const response = await fetch(`https://kanishak-video-scoring-api.hf.space/score-video/${id}/`,{method:'GET'})
   console.log(response);
   if(response.ok){
     const data = await response.json();
@@ -68,7 +68,7 @@ const Dashboard = () => {
     updateOutputData(data);
   }
   else{
-    console.log("Error")
+    console.log(`https://kanishak-video-scoring-api.hf.space/score-video/${id}`)
   }
  }
 fetchData();
@@ -89,6 +89,7 @@ if(outputData.scoring){
 
 
   return (
+    <>
     <div className="p-6 overflow-hidden relative bg-dark-gradient min-h-screen">
       <div className="flex justify-between items-center bg-gray-800 p-4 rounded-md shadow-md">
         <div className="flex space-x-4">
@@ -174,6 +175,12 @@ if(outputData.scoring){
           </div>
           {outputData.video_url && (<p className='text-xl absolute bottom-10 right-10  text-white'>Total Time Taken : {(count/60).toFixed(2)} mintues </p>)}
         </div>
+        <div>
+        {getJustifictaions &&(
+          <div className=''></div>
+        )} 
+        </div>
+        </>
       
   );
 };

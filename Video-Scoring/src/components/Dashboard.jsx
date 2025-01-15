@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [scoringCriteria, setScoringCriteria] = useState([]);
   const { inputData, outputData,updateInputData,updateOutputData } = useSharedContext();
   const [getJustifictaions,setGetJustifications] = useState(false)
+  const [justifications,setJustifications] = useState([]) 
 
 
   useEffect(() => {
@@ -74,6 +75,14 @@ const Dashboard = () => {
 fetchData();
 },[])
 
+const getScoreBreakdown = ()=>{
+setJustifications(Object.entries(outputData.scoring.justifications).map(([id, value]) => ({
+  id,
+  value
+})))
+console.log(justifications)
+setGetJustifications(!getJustifictaions)
+}
 
 const convertToFilteredArray = (data) => {
   setScoringCriteria(Object.entries(data.scoring)
@@ -81,6 +90,14 @@ const convertToFilteredArray = (data) => {
     .map(([key, value]) => ({ name: key, score: value })));
     console.log(scoringCriteria)
 };
+
+function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+  );
+}
+
 
 useEffect(()=>{
 if(outputData.scoring){
@@ -90,14 +107,16 @@ if(outputData.scoring){
 
   return (
     <>
-    <div className="p-6 overflow-hidden relative bg-dark-gradient min-h-screen">
+    <div className="p-6 overflow-hidden relative bg-black min-h-screen">
       <div className="flex justify-between items-center bg-gray-800 p-4 rounded-md shadow-md">
-        <div className="flex space-x-4">
-          <button className="px-4 py-2 bg-green-500 text-white rounded-md">Video</button>
+        <div className="flex space-x-4 justify-between w-full">
+          <h1 className="text-3xl text-center text-white">VideoGen</h1>
+          <div className="flex space-x-4">
+          <button 
+          className="px-4 py-2 bg-green-500 border-2 border-gray-600 text-white rounded-md">Video</button>
           <button className="px-4 py-2 bg-gray-900 text-white rounded-md">Scoring</button>
-          <button className="px-4 py-2 bg-gray-900 text-white rounded-md">Metrics</button>
           <button className="px-4 py-2 bg-gray-900 text-white rounded-md">Download</button>
-          <button className="px-4 py-2 bg-gray-900 text-white rounded-md">Actions</button>
+          </div>
         </div>
       </div>
 
@@ -173,13 +192,20 @@ if(outputData.scoring){
 </div>
             </div>
           </div>
-          {outputData.video_url && (<p className='text-xl absolute bottom-10 right-10  text-white'>Total Time Taken : {(count/60).toFixed(2)} mintues </p>)}
+          {outputData.video_url && (<p className='text-xl absolute bottom-32 right-14  text-white'>Total Time Taken : {(count/60).toFixed(2)} mintues </p>)}
+          {outputData.video_url && (<button 
+          onClick={getScoreBreakdown}
+          className='justification-button text-xl absolute bottom-10 right-10  text-white'>{getJustifictaions?'Click To Hide Score Breakdown':'Click To Get Score Breakdown'}</button>)}
         </div>
-        <div>
-        {getJustifictaions &&(
-          <div className=''></div>
-        )} 
-        </div>
+        {getJustifictaions &&( <div className="justifications-container">
+        
+          {justifications.map((criteria, index) => (
+          <div key={index} className='justifications-card'>
+              <h1 className='text-white justificationId'>{toTitleCase(criteria.id.replaceAll('_',' '))}</h1>
+              <h1 className='text-white justificationValue'>{criteria.value}</h1>
+          </div>
+        ))}
+        </div>)}
         </>
       
   );

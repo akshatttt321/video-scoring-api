@@ -10,6 +10,60 @@ body {
   scrollbar-width: none; /* For Firefox */
 }
 
+.justification-button {
+  background-color: #1f2937;
+  border: 1px solid #808080;
+  border-radius: 10px;
+  padding: 20px;
+  width: 23%;
+  transition: all 0.1s ease-in-out;
+}
+
+.justification-button:hover {
+  background-color: #101317;
+  border: 1px solid #808080;
+  border-radius: 10px;
+  padding: 20px;
+  width: 23%;
+}
+
+.justifications-container {
+  margin: 0px 25px ;
+  border-radius: 5px;
+  background-color: #1f2937;
+  display: flex;
+  justify-content: flex-start;
+  padding: 50px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.justifications-card {
+  background-color: #111827;
+  border: 1px solid #808080;
+  border-radius: 10px;
+  padding: 20px;
+  width: 23%;
+}
+
+.justificationId {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.justificationId {
+  font-size: 1.5rem;  
+  color: #fff;
+  justify-content: flex-start;
+}
+
+.justificationValue{
+  font-size: 0.75rem;
+  color: #bdbdbd;
+}
+
 .Scroll{
   scrollbar-width: none; /* For Firefox */
 }

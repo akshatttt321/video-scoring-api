@@ -56,7 +56,11 @@ const Dashboard = () => {
 
  useEffect(() => {
   const fetchData = async()=>{
-  const response = await fetch(`http://kanishak-video-scoring-api.hf.space/score-video/${id}`,{method:'GET'})
+
+   if(id===' ') return 
+  const response = await fetch(`https://kanishak-video-scoring-api.hf.space/score-video/${id}`,{method:'GET',
+    mode:'no-cors'
+  })
   console.log(response);
   if(response.ok){
     const data = await response.json();

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSharedContext } from '../sharedContext';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
 
@@ -110,7 +111,9 @@ if(outputData.scoring){
     <div className="p-6 overflow-hidden relative bg-black min-h-screen">
       <div className="flex justify-between items-center bg-gray-800 p-4 rounded-md shadow-md">
         <div className="flex space-x-4 justify-between w-full">
-          <h1 className="text-3xl text-center text-white">VideoGen</h1>
+          <Link to={'/'}>
+        <button className="px-4 py-2 bg-gray-900 text-white rounded-md">Back</button>
+        </Link>
           <div className="flex space-x-4">
           <button 
           className="px-4 py-2 bg-green-500 border-2 border-gray-600 text-white rounded-md">Video</button>

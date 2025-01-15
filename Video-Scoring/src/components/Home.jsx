@@ -76,11 +76,13 @@ addEventListener("scroll", () => {
         </Link>
 
         {/* Remove Background Button */}
+        <Link to="/catalogue">
         <button
           className="relative px-6 py-3 overflow-hidden bg-black bg-gradient-to-r from-[#ee9ca7] to-[#ffdde1] border border-gray-400 rounded-full font-medium hover:bg-gradient-to-l hover:from-[#ee9ca7] hover:to-[#ffdde1] hover:text-black transition-colors duration-1000 "
         >
-          Remove Background
+          Collections
         </button>
+        </Link>
     </div>
     </div>
     <div className="flex pt-2 bg-opacity-5 bg-black pb-2 justify-between w-screen">
@@ -89,7 +91,7 @@ addEventListener("scroll", () => {
   <h1 className="text-transparent">AI Videos</h1>
   </div>
   <h1 className="text-4xl font-normal  text-white text-start">Generate Ads For <br></br> Your Product ,With AI</h1>
-  <p className="text-white text-sm ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, ex <br></br>  voluptatem commodi est  deleniti quos culpa modi libero fuga ipsam <br></br> ad doloremque iusto, eaque laborum vero. Molestias fugit vitae rem.</p>
+  <p className="text-white text-sm ">Boost your product's reach with AI-generated ads Tailor creative,  <br></br>engaging content that resonates with your audience and <br></br> enhances conversions Let AI power your marketing today!.</p>
   <div className="flex justify-between gap-4">
     <div className="flex w-28 h-28  ml-1 justify-center items-center flex-col gap-4">
         <h1 className="text-xl -ml-2 mt-1 font-normal text-white">AI Generated</h1>

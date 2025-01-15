@@ -21,12 +21,9 @@ export default function Navbar( {showNav, setShowNav} ) {
             Generate
           </h1>
           </Link>
-          <a href="#services" className="text-white hover:text-gray-200">
-            Remove Background
-          </a>
           <Link to={"/catalogue"}>
           <a href="#contact" className="text-white hover:text-gray-200">
-            Catalogue
+            Collections
           </a>
           </Link>
         </div>
@@ -51,12 +48,6 @@ export default function Navbar( {showNav, setShowNav} ) {
             className="block text-white py-2 px-4 hover:bg-blue-700"
           >
             Generate
-          </a>
-          <a
-            href="#services"
-            className="block text-white py-2 px-4 hover:bg-blue-700"
-          >
-            Background Remove
           </a>
           <a
             href="#contact"

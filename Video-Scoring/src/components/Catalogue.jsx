@@ -27,7 +27,8 @@ function Catalogue() {
     { id: 3, link: "https://res.cloudinary.com/dzz1r3hcf/video/upload/v1736617127/odfx0jt6nhpetylyjqqi.mp4" },
     { id: 4, link: "https://res.cloudinary.com/dzz1r3hcf/image/upload/v1736557891/oah3nv6h7q5yprzz6nvr.png" },
     { id: 5, link: "https://res.cloudinary.com/dzz1r3hcf/image/upload/v1736726588/phxjmcpk0oebowakluql.png" },
-    { id: 6, link: "https://res.cloudinary.com/dzz1r3hcf/video/upload/v1735065977/ynfkq3hx841eftqycccl.mp4" }
+    { id: 6, link: "https://res.cloudinary.com/dzz1r3hcf/video/upload/v1735065977/ynfkq3hx841eftqycccl.mp4" },
+    {id:7,link:'https://res.cloudinary.com/dzz1r3hcf/video/upload/v1736978023/bnwwsel8oqqihcrfxkgv.mp4'}
   ];
   
   const collectionData2 = [
@@ -45,6 +46,7 @@ function Catalogue() {
     { id: 4, link: "https://res.cloudinary.com/dzz1r3hcf/video/upload/v1735449989/mvrtza693wjjtps4ieyb.mp4" },
     { id: 5, link: "https://res.cloudinary.com/dzz1r3hcf/image/upload/v1736729177/n1oqpjamozhfv0eghxd0.png" },
     { id: 6, link: "https://v3.fal.media/files/koala/zjz8_QI9kDx1OYxC1LskL_output.mp4" },
+    {id:7,link:'https://res.cloudinary.com/dzz1r3hcf/video/upload/v1737019249/l9pliyfwbkntwzt2mwlj.mp4'}
   ];
   
   const collectionData4 = [

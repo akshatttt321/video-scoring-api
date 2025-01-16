@@ -55,16 +55,16 @@ addEventListener("scroll", () => {
       }}
       className="flex flex-col bg-center bg-no-repeat gap-4 justify-center items-center min-h-screen h-full w-full">
       <div className="gradient text-transparent text-5xl font-bold">
-  Discover the Future
+      Where Creativity Meets
 </div>
 
-        <p className="text-5xl font-bold z-10 mix-blend-overlay text-white">With Artifiial Intelligence</p>
+        <p className="text-5xl font-bold z-10 mix-blend-overlay text-white"> Artificial Intelligence</p>
         <div className="relative bottom-6 bg-transparent flex items-center justify-center">
   <div
   className="absolute w-[500px] shadow-glow animate-glow flex justify-center rounded-full">
 </div>
 </div>
-<p className="text-gray-200 text-center font-medium text-md ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum optio officiis sit ex architecto?<br></br> Error ipsa natusquis minima debitis quas perspiciatis, dolores aliquam numquam odio <br></br> cum commodi! Reprehenderit, corporis?</p>
+<p className="text-gray-200 text-center font-medium text-md ">Turn your product into a captivating story with just a few clicks. Instantly create and <br></br>  evaluate professional marketing videos, tailored to your brand and backed <br></br> by smart AI feedback to ensure your message hits the mark.</p>
  <div className="flex gap-12 mt-5">
         {/* Generate Video Button */}
         <Link to="/input-form">

@@ -28,7 +28,7 @@ const InputForm = () => {
       const {outputData,updateInputData,updateOutputData } = useSharedContext();
       const [product, setProduct] = useState('')
       const [tagline,setTagline] = useState('')
-      const [brandPallete,setBrandPallete] = useState([{id:1,value:'#000000',colorName:'Black'}])
+      const [brandPallete,setBrandPallete] = useState([{id:1,value:'',colorName:''}])
       const [height, setHeight] = useState(1080)
       const [width,setWidth] = useState(1920)
       const [CTA,setCTA] = useState('')
@@ -111,7 +111,7 @@ const InputForm = () => {
         if (!response.ok) {
           updateOutputData({isSucessful: false});
           alert("request failed, Please Try Again!")
-          throw new Error(`Error: ${response.statusText}`);
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
     
         const data = await response.json();
